@@ -21,8 +21,8 @@ Route::get('/', function () {
  * 後台登入/登出
  */
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'Admin\IndexController@index')->middleware('admin.auth');
-    Route::get('login', 'Admin\IndexController@login');
-    Route::post('login', 'Admin\IndexController@loginDo');
-    Route::get('logout', 'Admin\IndexController@logout')->middleware('admin.auth');
+    Route::get('/', 'Admin\IndexController@index')->middleware('admin.is.login');
+    Route::get('login', 'Admin\IndexController@login')->middleware('admin.not.login');
+    Route::post('login', 'Admin\IndexController@loginDo')->middleware('admin.not.login');
+    Route::get('logout', 'Admin\IndexController@logout')->middleware('admin.is.login');
 });

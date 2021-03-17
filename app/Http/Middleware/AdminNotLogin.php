@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminAuth
+class AdminNotLogin
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class AdminAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!session('admin_auth_session')){
-            return redirect('admin/login');
+        if(session('admin_auth_session')){
+            return redirect('admin/');
         }
 
         return $next($request);
