@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * 後台登入/登出
+ */
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\IndexController@index');
+    Route::get('login', 'Admin\IndexController@login');
+    Route::post('login', 'Admin\IndexController@loginDo');
+    Route::get('logout', 'Admin\IndexController@logout');
+});
