@@ -30,11 +30,11 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    @include('admin/navbar')
+    @include('admin-share/navbar')
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('admin/main-sidbar')
+    @include('admin-share/main-sidbar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -642,7 +642,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('admin/footer')
+    @include('admin-share/footer')
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
