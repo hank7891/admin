@@ -6,3 +6,8 @@
  
  * PHP 7.3
  * Laravel 8.0
+
+# 後台樣板
+
+ * [GIT](https://github.com/ColorlibHQ/AdminLTE)
+ * [DEMO](https://adminlte.io/themes/AdminLTE/index.html)
