@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Employee;
+
 class IndexController extends Controller
 {
     /**
@@ -33,9 +35,33 @@ class IndexController extends Controller
      */
     public function loginDo(Request $request)
     {
-        // TODO
+        try {
+            $account  = $request->account;
+            $password = $request->password;
 
-        return redirect('admin/');
+            if (trim($account) == '' || trim($password) == '') {
+                throw new \Exception('請輸入帳號及密碼！ #001');
+            }
+
+            $employee = Employee::where('account', $account)
+                                ->where('password', $password)
+                                ->get()
+                                ->toArray();
+
+            if (empty($employee)) {
+                throw new \Exception('帳號或密碼輸入錯誤！ #001');
+            }
+
+            unset($employee['password']);
+            session(['admin_auth_session' => $employee]);
+
+            return redirect('admin/');
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+            exit;
+            return redirect('admin/login');
+        }
+
     }
 
     /**
@@ -43,7 +69,7 @@ class IndexController extends Controller
      */
     public function logout()
     {
-        // TODO
+        session()->forget('admin_auth_session');
         return redirect('admin/login');
     }
 }
