@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Library\Admin\Auth;
 
 class IndexController extends Controller
@@ -33,7 +32,7 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function loginDo(Request $request)
+    public function loginDo(Request $request, Auth $auth)
     {
         try {
             $account  = $request->account;
@@ -43,7 +42,6 @@ class IndexController extends Controller
                 throw new \Exception('請輸入帳號及密碼！ #001');
             }
 
-            $auth = new Auth();
             $employee = $auth->fetchDataByLogin($account, $password);
             session(['admin_auth_session' => $employee]);
 
