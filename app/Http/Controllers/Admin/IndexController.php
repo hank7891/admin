@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Employee;
+use App\Library\Admin\Auth;
 
 class IndexController extends Controller
 {
@@ -43,22 +43,13 @@ class IndexController extends Controller
                 throw new \Exception('請輸入帳號及密碼！ #001');
             }
 
-            $employee = Employee::where('account', $account)
-                                ->where('password', $password)
-                                ->get()
-                                ->toArray();
-
-            if (empty($employee)) {
-                throw new \Exception('帳號或密碼輸入錯誤！ #001');
-            }
-
-            unset($employee['password']);
+            $auth = new Auth();
+            $employee = $auth->fetchDataByLogin($account, $password);
             session(['admin_auth_session' => $employee]);
 
             return redirect('admin/');
         } catch (\Exception $e) {
-            echo $e->getMessage();
-            exit;
+
             return redirect('admin/login');
         }
 
