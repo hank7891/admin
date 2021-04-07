@@ -49,7 +49,6 @@ class Message
             ];
         }
 
-
         session([$sessionKey => $messages]);
     }
 }
