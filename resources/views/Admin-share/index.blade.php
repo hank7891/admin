@@ -25,6 +25,13 @@
     <link rel="stylesheet" href={{'admin-layout/plugins/daterangepicker/daterangepicker.css'}}>
     <!-- summernote -->
     <link rel="stylesheet" href={{'admin-layout/plugins/summernote/summernote-bs4.min.css'}}>
+    <!-- jQuery -->
+    <script src={{'admin-layout/plugins/jquery/jquery.min.js'}}></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src={{'admin-layout/plugins/jquery-ui/jquery-ui.min.js'}}></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+    @include('Share/message-alert')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -48,11 +55,6 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src={{'admin-layout/plugins/jquery/jquery.min.js'}}></script>
-<!-- jQuery UI 1.11.4 -->
-<script src={{'admin-layout/plugins/jquery-ui/jquery-ui.min.js'}}></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
