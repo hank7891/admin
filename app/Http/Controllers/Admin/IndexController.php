@@ -43,7 +43,7 @@ class IndexController extends Controller
             }
 
             $employee = $auth->fetchDataByLogin($account, $password);
-            session(['admin_auth_session' => $employee]);
+            session([ADMIN_AUTH_SESSION => $employee]);
 
             return redirect('admin/');
         } catch (\Exception $e) {
@@ -58,7 +58,7 @@ class IndexController extends Controller
      */
     public function logout()
     {
-        session()->forget('admin_auth_session');
+        session()->forget(ADMIN_AUTH_SESSION);
         return redirect('admin/login');
     }
 }
