@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Library\Admin\Auth;
+use App\Library\Share\Message;
 
 class IndexController extends Controller
 {
@@ -48,6 +49,7 @@ class IndexController extends Controller
             return redirect('admin/');
         } catch (\Exception $e) {
 
+            Message::setMessage(ADMIN_MESSAGE_SESSION, MESSAGE::DANGER, $e->getMessage());
             return redirect('admin/login');
         }
 
