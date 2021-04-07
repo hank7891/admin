@@ -66,6 +66,24 @@
             $(this).remove();
         });
     }
+
+    var getMessage = function () {
+        $.ajax({
+            type: "GET",
+            url: "/api/getMessage/<?= ADMIN_MESSAGE_SESSION ?>",
+            data: {},
+            success: function (data) {
+                if (data.status === 1) {
+                    newAlert('danger', data.msg)
+                    return ;
+                }
+
+                data.data.forEach(function (val) {
+                    newAlert(val.type, val.message)
+                })
+            }
+        });
+    }();
 </script>
 
 
